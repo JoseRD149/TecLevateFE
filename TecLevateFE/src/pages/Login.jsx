@@ -1,34 +1,54 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../services/authService';
+import { toast } from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css'; 
 
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false); 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError('');
+    setLoading(true); 
 
     try {
       const response = await login({ email, password });
       const { token, user } = response.data;
 
-      
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(user));
+      if (token && user) {
+        localStorage.setItem('token', token);
+        localStorage.setItem('user', JSON.stringify(user));
+        navigate('/profile');
 
-    
-      navigate('/profile');
+       
+        toast.success('¡Bienvenido de nuevo!', { position: "top-right" });
+      } else {
+        throw new Error('Datos inválidos recibidos del servidor');
+      }
     } catch (err) {
-      
       if (err.response && err.response.data && err.response.data.message) {
         setError(err.response.data.message);
+        toast.error(err.response.data.message, { position: "top-right" }); 
       } else {
         setError('Ha ocurrido un error, inténtalo de nuevo.');
+        toast.error('Ha ocurrido un error, inténtalo de nuevo.', { position: "top-right" }); 
       }
+    } finally {
+      setLoading(false);  
+    }
+  };
+
+  const handleInputChange = (e) => {
+    if (error) setError(''); 
+    if (e.target.id === 'email') {
+      setEmail(e.target.value);
+    } else if (e.target.id === 'password') {
+      setPassword(e.target.value);
     }
   };
 
@@ -53,7 +73,7 @@ function Login() {
                 id="email"
                 placeholder="nombre@ejemplo.com"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleInputChange}
                 required
               />
             </div>
@@ -66,13 +86,19 @@ function Login() {
                 id="password"
                 placeholder="Tu contraseña"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handleInputChange}
                 required
               />
             </div>
 
             <div className="d-grid">
-              <button type="submit" className="btn btn-primary">Entrar</button>
+              <button 
+                type="submit" 
+                className="btn btn-primary" 
+                disabled={loading} 
+              >
+                {loading ? 'Cargando...' : 'Entrar'}
+              </button>
             </div>
 
             <div className="text-center mt-3">

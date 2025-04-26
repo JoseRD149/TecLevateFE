@@ -5,7 +5,8 @@ import Courses from './pages/Courses';
 import Projects from './pages/Projects';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 function App() {
   return (
     <Router>
@@ -19,9 +20,9 @@ function App() {
           <Route path="/login" element={<Login />} />
         </Routes>
       </div>
+      <ToastContainer /> {}
     </Router>
   );
 }
-
 
 export default App;
