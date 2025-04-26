@@ -35,8 +35,7 @@ function Login() {
         setError(err.response.data.message);
         toast.error(err.response.data.message, { position: "top-right" }); 
       } else {
-        // setError('Ha ocurrido un error, inténtalo de nuevo.');
-        // toast.error('Ha ocurrido un error, inténtalo de nuevo.', { position: "top-right" }); 
+     
       }
     } finally {
       setLoading(false);  

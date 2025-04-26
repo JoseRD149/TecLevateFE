@@ -1,6 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from 'axios';
 
 const API_URL = "http://localhost:80/TecLevate";
 
@@ -27,5 +28,12 @@ export function login(credentials) {
         console.error('Error desconocido:', error.message);
         toast.error('Ocurrió un error desconocido. Por favor, intenta más tarde.');
       }
+    });
+}
+export function register(userData) {
+  return axios.post(`${API_URL}/register`, userData)
+    .then(response => response.data)
+    .catch(error => {
+      throw error;
     });
 }
