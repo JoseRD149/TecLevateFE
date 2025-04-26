@@ -15,6 +15,11 @@ export function login(credentials) {
       if (error.response) {
         console.error('Error en el login:', error.response.data.error);
         toast.error(`Error: ${error.response.data.error}`); 
+        if (error.response.status === 401) {
+          // toast.error(`Error: Correo o contraseña incorrectos`); 
+        } else {
+          toast.error(`Error: desconocido`); 
+        }
       } else if (error.request) {
         console.error('Error de red:', error.request);
         toast.error('Hubo un problema con la red. Intenta de nuevo.'); 
