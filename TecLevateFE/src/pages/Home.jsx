@@ -1,6 +1,6 @@
 function Home() {
   return (
-    <div className="container mt-5 text_center">
+    <div className="container mt-5 text-center">
       <h1 className="display-4">Bienvenido a TecLevate</h1>
       <p className="lead">Impulsa tu carrera con nuestros proyectos y cursos</p>
       <img
@@ -9,10 +9,10 @@ function Home() {
         className="img-fluid my-4 rounded"
       />
       <div>
-        <a href="/courses" className="btn btn-prymary-lg m-2">
+        <a href="/courses" className="btn btn-primary-lg m-2">
           Cursos Disponibles
         </a>
-        <a href="/projects" className="btn btn-secondary-lg m-2">
+        <a href="/projects" className="btn btn-secondary btn-lg m-2">
           Proyectos Destacados
         </a>
       </div>

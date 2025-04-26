@@ -6,10 +6,12 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        {/* Las otras páginas las añadiremos después */}
-      </Routes>
+      <div className="container mt-4">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          {/* Las otras páginas las añadiremos después */}
+        </Routes>
+      </div>
     </Router>
   );
 }
