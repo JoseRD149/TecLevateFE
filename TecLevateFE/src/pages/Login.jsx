@@ -17,21 +17,25 @@ function Login() {
     setLoading(true);
 
     try {
-      const response = await login({ email, password });
-      const { token, user } = response.data;
-
-      if (token && user) {
-        localStorage.setItem('token', token);
+      const user = await login({ email, password });
+  
+      console.log('Usuario recibido:', user);
+  
+      if (user) {
         localStorage.setItem('user', JSON.stringify(user));
+        toast.success('¡Bienvenido de nuevo!', { position: 'top-right' });
         navigate('/profile');
-
-        toast.success('¡Bienvenido de nuevo!', { position: "top-right" });
       } else {
         throw new Error('Datos inválidos recibidos del servidor');
       }
     } catch (err) {
-      toast.error('Contraseña errónea', { position: "top-right" });
-      setError('Contraseña errónea');
+      if (err.response && err.response.data && err.response.data.message) {
+        setError(err.response.data.message);
+        toast.error(err.response.data.message, { position: 'top-right' });
+      } else {
+        setError('Contraseña errónea');
+        toast.error('Contraseña errónea', { position: 'top-right' });
+      }
     } finally {
       setLoading(false);
     }
@@ -96,7 +100,8 @@ function Login() {
             </div>
 
             <div className="text-center mt-3">
-              <a href="#">¿Olvidaste tu contraseña?</a>
+              <span>No tienes cuenta? </span>
+              <a href="/register">Registrate aquí</a>
             </div>
           </form>
         </div>

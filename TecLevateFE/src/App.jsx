@@ -7,7 +7,7 @@ import Profile from './pages/Profile';
 import Login from './pages/Login';
 import PrivateRoute from './components/PrivateRoute'; 
 import { ToastContainer } from 'react-toastify';
-
+import Register from './pages/Register';
 function App() {
   const location = useLocation();
 
@@ -21,6 +21,7 @@ function App() {
       <div className="container mt-4">
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           
           {/* Protegemos las rutas */}
           <Route path="/" element={
