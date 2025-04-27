@@ -7,14 +7,12 @@ function Navbar() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Verifica si hay usuario en localStorage
     const storedUser = JSON.parse(localStorage.getItem('user'));
-    console.log(storedUser); // Verifica lo que se encuentra en localStorage
     if (storedUser) {
       setUser(storedUser);
       setIsLoggedIn(true);
     }
-  }, []); // Se ejecuta una sola vez al montar el componente
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('user');
@@ -22,8 +20,6 @@ function Navbar() {
     setUser(null);
     navigate('/login');
   };
-
-  console.log(isLoggedIn, user); // Verifica el estado de isLoggedIn y user
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: '#007bff' }}>
@@ -40,9 +36,11 @@ function Navbar() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        
+
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
+
+            {/* Rutas principales */}
             <li className="nav-item">
               <Link className="nav-link text-white px-4 py-2" to="/courses">Cursos</Link>
             </li>
@@ -53,13 +51,36 @@ function Navbar() {
               <Link className="nav-link text-white px-4 py-2" to="/profile">Mi Perfil</Link>
             </li>
 
+            {/* 🔥 Nuevas rutas de gestión */}
+            <li className="nav-item">
+              <Link className="nav-link text-white px-4 py-2" to="/list-courses">📚 Listar Cursos</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link text-white px-4 py-2" to="/list-projects">🛠️ Listar Proyectos</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link text-white px-4 py-2" to="/list-joboffers">💼 Listar Ofertas</Link>
+            </li>
+
+            {/* 🔥 Crear */}
+            <li className="nav-item">
+              <Link className="nav-link text-white px-4 py-2" to="/create-course">➕ Crear Curso</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link text-white px-4 py-2" to="/create-project">➕ Crear Proyecto</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link text-white px-4 py-2" to="/create-joboffer">➕ Crear Oferta</Link>
+            </li>
+
+            {/* Login / Logout */}
             {!isLoggedIn ? (
               <li className="nav-item">
                 <Link className="btn btn-outline-light btn-sm ms-2" to="/login">Iniciar Sesión</Link>
               </li>
             ) : (
               <>
-               <li className="nav-item">
+                <li className="nav-item">
                   <span className="navbar-text text-white px-4 py-2" style={{ fontSize: '1.2rem', fontWeight: '600' }}>
                     Hola, <span style={{ color: '#ffdd57' }}>{user.name}</span>
                   </span>
