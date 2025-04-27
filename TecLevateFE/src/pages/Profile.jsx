@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { uploadProfileImage } from '../services/userService';
 
 function getPublicImageUrl(fullPath) {
-  if (!fullPath) return null; 
+  if (!fullPath) return null;
   const m = fullPath.match(/uploads[\\/].+$/);
   if (!m) return null;
   const relative = m[0].replace(/\\/g, '/');
@@ -11,7 +12,7 @@ function getPublicImageUrl(fullPath) {
 function Profile() {
   const [user, setUser] = useState(null);
   const [projects, setProjects] = useState([]);
-  const [imageFile, setImageFile] = useState(null); 
+  const [imageFile, setImageFile] = useState(null);
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem('user'));
@@ -24,17 +25,25 @@ function Profile() {
     }
   }, []);
 
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setImageFile(file);
-    }
+  const handleImageUpload = (e) => {
+    setImageFile(e.target.files[0]);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!imageFile) return;
+
     const formData = new FormData();
     formData.append('profile_image', imageFile);
+
+    try {
+      const data = await uploadProfileImage(formData);  // Llamada al servicio de subida
+      setUser(data.user);  // Actualiza el usuario con la nueva imagen
+      localStorage.setItem('user', JSON.stringify(data.user));  // Guarda el usuario actualizado
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
   };
 
   if (!user) return <div>Cargando...</div>;
@@ -60,6 +69,12 @@ function Profile() {
               accept="image/*"
               className="form-control"
             />
+            <form onSubmit={handleSubmit}>
+              {imageFile && <p>Imagen seleccionada: {imageFile.name}</p>}
+              <button type="submit" className="btn btn-success mt-3">
+                Subir imagen
+              </button>
+            </form>
           </div>
         )}
 
@@ -72,24 +87,22 @@ function Profile() {
 
         <h4>Proyectos o Cursos Inscritos:</h4>
         <ul className="list-group">
-          {projects.length > 0 ? projects.map(p => (
-            <li key={p.id} className="list-group-item">
-              <h5>{p.name}</h5>
-              <p>{p.description}</p>
-            </li>
-          )) : <p>No tienes proyectos o cursos inscritos.</p>}
+          {projects.length > 0 ? (
+            projects.map(p => (
+              <li key={p.id} className="list-group-item">
+                <h5>{p.name}</h5>
+                <p>{p.description}</p>
+              </li>
+            ))
+          ) : (
+            <p>No tienes proyectos o cursos inscritos.</p>
+          )}
         </ul>
 
         <div className="mt-4">
           <button className="btn btn-primary">Ver más</button>
         </div>
       </div>
-
-      {/* Si quieres que se suba la imagen al backend */}
-      <form onSubmit={handleSubmit}>
-        {imageFile && <p>Imagen seleccionada: {imageFile.name}</p>}
-        <button type="submit" className="btn btn-success mt-3">Subir imagen</button>
-      </form>
     </div>
   );
 }
