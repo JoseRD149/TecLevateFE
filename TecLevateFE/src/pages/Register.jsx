@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { register } from "../services/authService";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import  "../Register.css"; 
 
 function Register() {
   const navigate = useNavigate();
@@ -79,9 +80,10 @@ function Register() {
   };
 
   return (
-    <div className="row justify-content-center">
-      <div className="col-md-6 col-lg-5">
-        <div className="card shadow p-4">
+<div className="row justify-content-center register-container">
+<div className="overlay-global"></div>
+      <div className="col-md-8 col-lg-6">
+      <div className="card shadow p-4">
           <h2 className="text-center mb-4">Registrarse</h2>
 
           {error && (

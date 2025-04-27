@@ -33,7 +33,7 @@ body {
 }
 
 .login-logo {
-  position: absolute;
+  position: fixed;
   top: 2rem;
   right: 2rem;
   width: 120px;

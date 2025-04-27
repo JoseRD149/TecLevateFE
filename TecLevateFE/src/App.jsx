@@ -26,12 +26,15 @@ import Dashboard from './pages/Dashboard';
 function App() {
   const location = useLocation();
 
+  // Si la ruta es login o register, no se muestra la navbar
+  const hideNavbar = location.pathname === "/login" || location.pathname === "/register";
+
   return (
     <>
       <ToastContainer />
 
-      {/* Navbar solo si NO estamos en login */}
-      {location.pathname !== "/login" && <Navbar />}
+      {/* Mostrar Navbar solo si no estamos en login o register */}
+      {!hideNavbar && <Navbar />}
 
       <div className="container mt-4">
         <Routes>
