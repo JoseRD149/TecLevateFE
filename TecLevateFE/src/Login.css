@@ -57,7 +57,7 @@ body {
 button {
   width: 100%;
   padding: 0.75rem;
-  background-color: #0d2033 !important;
+  background-color: #1c1c2c !important;
   color: white;
   font-weight: 600;
   border-radius: 8px;
@@ -67,7 +67,7 @@ button {
 }
 
 button:hover {
-  background-color: #7d7613;
+  background-color: #f0ad05;
 }
 
 .text-center {

@@ -22,9 +22,11 @@ function Navbar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: '#007bff' }}>
+    <nav className="navbar navbar-expand-lg navbar-dark fixed-top" style={{ backgroundColor: '#1c1c2c' }}>
       <div className="container">
-        <Link className="navbar-brand text-white font-weight-bold" to="/">TecLevate</Link>
+        <Link className="navbar-brand text-white font-weight-bold" to="/">
+          <img src="src/assets/logo-teclevate.png" alt="Logo" style={{ height: '90px' }} /> {/* Asegúrate de que el logo tenga el tamaño adecuado */}
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -39,7 +41,6 @@ function Navbar() {
 
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-
             {/* Rutas principales */}
             <li className="nav-item">
               <Link className="nav-link text-white px-4 py-2" to="/courses">Cursos</Link>
@@ -51,7 +52,7 @@ function Navbar() {
               <Link className="nav-link text-white px-4 py-2" to="/profile">Mi Perfil</Link>
             </li>
 
-            {/* 🔥 Nuevas rutas de gestión */}
+            {/* Nuevas rutas de gestión
             <li className="nav-item">
               <Link className="nav-link text-white px-4 py-2" to="/list-courses">📚 Listar Cursos</Link>
             </li>
@@ -60,9 +61,9 @@ function Navbar() {
             </li>
             <li className="nav-item">
               <Link className="nav-link text-white px-4 py-2" to="/list-joboffers">💼 Listar Ofertas</Link>
-            </li>
+            </li> */}
 
-            {/* 🔥 Crear */}
+            {/* Crear
             <li className="nav-item">
               <Link className="nav-link text-white px-4 py-2" to="/create-course">➕ Crear Curso</Link>
             </li>
@@ -71,7 +72,7 @@ function Navbar() {
             </li>
             <li className="nav-item">
               <Link className="nav-link text-white px-4 py-2" to="/create-joboffer">➕ Crear Oferta</Link>
-            </li>
+            </li> */}
 
             {/* Login / Logout */}
             {!isLoggedIn ? (
@@ -82,7 +83,7 @@ function Navbar() {
               <>
                 <li className="nav-item">
                   <span className="navbar-text text-white px-4 py-2" style={{ fontSize: '1.2rem', fontWeight: '600' }}>
-                    Hola, <span style={{ color: '#ffdd57' }}>{user.name}</span>
+                    Hola, <span style={{ color: '#f0ad05' }}>{user.name}</span>
                   </span>
                 </li>
                 <li className="nav-item">
