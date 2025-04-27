@@ -39,11 +39,16 @@ function Profile() {
 
   const handleSubmit = async e => {
     e.preventDefault();
+    const stored = JSON.parse(localStorage.getItem('user'));
+    if (!stored) return;
+    setUser(stored);
+    const userId = stored.id;
+
     if (!imageFile) return;
     const formData = new FormData();
     formData.append('profile_image', imageFile);
     try {
-      const { user: updated } = await uploadProfileImage(formData);
+      const { user: updated } = await uploadProfileImage(formData,userId);
       setUser(updated);
       localStorage.setItem('user', JSON.stringify(updated));
     } catch (err) {

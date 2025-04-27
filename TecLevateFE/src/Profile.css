@@ -38,6 +38,7 @@ body {
   width: 100% !important;
   max-width: none !important;
   padding: 0 1rem;
+  padding-top: 80px;
 }
 .container-fluid {
   width: 100%;
