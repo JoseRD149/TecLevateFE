@@ -18,6 +18,11 @@ import CreateCourse from "./components/CreateCourse";
 import CreateProject from "./components/CreateProject";
 import CreateJobOffer from "./components/CreateJobOffer";
 
+import ListCourses from './components/ListCourses';
+import ListProjects from './components/ListProjects';
+import ListJobOffers from './components/ListJobOffers';
+import Dashboard from './pages/Dashboard';
+
 function App() {
   const location = useLocation();
 
@@ -35,6 +40,7 @@ function App() {
           <Route path="/list-courses" element={<ListCourses />} />
           <Route path="/list-projects" element={<ListProjects />} />
           <Route path="/list-joboffers" element={<ListJobOffers />} />
+          <Route path="/" element={<Dashboard />} />
 
           {/* Rutas protegidas */}
           <Route

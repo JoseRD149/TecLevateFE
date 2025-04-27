@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { login } from '../services/authService';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import '../Login.css'; 
 
 function Login() {
   const navigate = useNavigate();
@@ -18,9 +19,9 @@ function Login() {
 
     try {
       const user = await login({ email, password });
-  
+
       console.log('Usuario recibido:', user);
-  
+
       if (user) {
         localStorage.setItem('user', JSON.stringify(user));
         toast.success('¡Bienvenido de nuevo!', { position: 'top-right' });
@@ -51,9 +52,15 @@ function Login() {
   };
 
   return (
-    <div className="row justify-content-center">
-      <div className="col-md-6 col-lg-5">
-        <div className="card shadow p-4">
+    <div className="login-container">
+      <img 
+        src="src/assets/logo-teclevate.png" 
+        alt="Logo" 
+        className="login-logo"
+      />
+      
+      <div className="login-content">
+        <div className="login-card">
           <h2 className="text-center mb-4">Iniciar Sesión</h2>
 
           {error && (
