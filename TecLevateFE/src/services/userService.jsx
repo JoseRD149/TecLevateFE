@@ -23,3 +23,11 @@ export async function getUserCourses(userId) {
   const resp = await axios.get(`${API_URL}/user-courses/user/${userId}`);
   return resp.data; 
 }
+export async function getAllProjects() {
+  const resp = await axios.get(`${API_URL}/projects`); 
+  return resp.data;
+}
+export async function getAllCourses() {
+  const resp = await axios.get(`${API_URL}/courses`);
+  return resp.data;
+}

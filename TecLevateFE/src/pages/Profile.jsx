@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { uploadProfileImage, getUserCourses, getUserProjects } from '../services/userService';
+import { useNavigate } from 'react-router-dom'; 
 import '../Profile.css';
 
 function getPublicImageUrl(fullPath) {
@@ -15,6 +16,7 @@ function Profile() {
   const [projects, setProjects] = useState([]);
   const [courses, setCourses] = useState([]);
   const [imageFile, setImageFile] = useState(null);
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem('user'));
@@ -50,10 +52,17 @@ function Profile() {
     }
   };
 
+  const viewAllProjects = () => {
+    navigate('/projects');
+  };
+
+  const viewAllCourses = () => {
+    navigate('/courses');
+  };
+
   if (!user) return <div>Cargando...</div>;
 
   const profileImage = getPublicImageUrl(user.profile_image);
-
 
   return (
     <div className="profile-container">
@@ -93,7 +102,7 @@ function Profile() {
             <p><strong>DNI:</strong> {user.dni}</p>
           </div>
 
-          <h4>Proyectos o Cursos Inscritos:</h4>
+          <h4>Proyectos Inscritos:</h4>
           <ul className="list-group">
             {projects.length > 0 ? (
               projects.map(p => (
@@ -106,7 +115,7 @@ function Profile() {
               <p>No tienes proyectos inscritos.</p>
             )}
           </ul>
-
+          <button className="btn btn-secondary mt-3 mb-3" onClick={viewAllProjects}>Ver más proyectos</button>
           <h4>Cursos Inscritos:</h4>
           <ul className="list-group">
             {courses.length > 0 ? (
@@ -120,10 +129,7 @@ function Profile() {
               <p>No tienes cursos inscritos.</p>
             )}
           </ul>
-
-          <div className="mt-4">
-            <button className="btn btn-primary">Ver más</button>
-          </div>
+          <button className="btn btn-secondary mt-3" onClick={viewAllCourses}>Ver más cursos</button>
         </div>
       </div>
     </div>
