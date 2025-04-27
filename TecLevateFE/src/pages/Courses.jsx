@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { getUserCourses, getAllCourses } from "../services/userService"; // Asegúrate de tener estos servicios
-import "../Courses.css"; // Si tienes CSS para cursos
+import { getUserCourses, getAllCourses } from "../services/userService"; 
+import "../Courses.css"; 
 
 function Courses() {
   const [userCourses, setUserCourses] = useState([]);
@@ -18,7 +18,6 @@ function Courses() {
         const allData = await getAllCourses();
         console.log("Todos los cursos:", allData);
 
-        // Filtrar: mostrar solo los cursos que el usuario no tiene
         const availableCourses = allData.filter(course => 
           !userCourses.some(userCourse => userCourse.id === course.id)
         );
