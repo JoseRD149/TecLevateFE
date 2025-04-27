@@ -8,22 +8,27 @@ import Login from './pages/Login';
 import PrivateRoute from './components/PrivateRoute'; 
 import { ToastContainer } from 'react-toastify';
 import Register from './pages/Register';
+
+import CreateCourse from './components/CreateCourse';
+import CreateProject from './components/CreateProject';
+import CreateJobOffer from './components/CreateJobOffer';
+
 function App() {
   const location = useLocation();
 
   return (
     <>
-    <>
-  <ToastContainer />
-  {/* el resto de tu app */}
-</>
+      <ToastContainer />
+      
+      {/* Navbar solo si NO estamos en login */}
       {location.pathname !== '/login' && <Navbar />}
+
       <div className="container mt-4">
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          
-          {/* Protegemos las rutas */}
+
+          {/* Rutas protegidas */}
           <Route path="/" element={
             <PrivateRoute>
               <Home />
@@ -44,10 +49,26 @@ function App() {
               <Profile />
             </PrivateRoute>
           } />
+          
+          {/* Nuevas rutas para crear */}
+          <Route path="/create-course" element={
+            <PrivateRoute>
+              <CreateCourse />
+            </PrivateRoute>
+          } />
+          <Route path="/create-project" element={
+            <PrivateRoute>
+              <CreateProject />
+            </PrivateRoute>
+          } />
+          <Route path="/create-joboffer" element={
+            <PrivateRoute>
+              <CreateJobOffer />
+            </PrivateRoute>
+          } />
         </Routes>
       </div>
     </>
-    
   );
 }
 
