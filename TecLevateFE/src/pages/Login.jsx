@@ -1,20 +1,20 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../services/authService';
-import { toast } from 'react-toastify'; 
-import 'react-toastify/dist/ReactToastify.css'; 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError('');
-    setLoading(true); 
+    setLoading(true);
 
     try {
       const response = await login({ email, password });
@@ -25,25 +25,20 @@ function Login() {
         localStorage.setItem('user', JSON.stringify(user));
         navigate('/profile');
 
-       
         toast.success('¡Bienvenido de nuevo!', { position: "top-right" });
       } else {
         throw new Error('Datos inválidos recibidos del servidor');
       }
     } catch (err) {
-      if (err.response && err.response.data && err.response.data.message) {
-        setError(err.response.data.message);
-        toast.error(err.response.data.message, { position: "top-right" }); 
-      } else {
-     
-      }
+      toast.error('Contraseña errónea', { position: "top-right" });
+      setError('Contraseña errónea');
     } finally {
-      setLoading(false);  
+      setLoading(false);
     }
   };
 
   const handleInputChange = (e) => {
-    if (error) setError(''); 
+    if (error) setError('');
     if (e.target.id === 'email') {
       setEmail(e.target.value);
     } else if (e.target.id === 'password') {
@@ -91,10 +86,10 @@ function Login() {
             </div>
 
             <div className="d-grid">
-              <button 
-                type="submit" 
-                className="btn btn-primary" 
-                disabled={loading} 
+              <button
+                type="submit"
+                className="btn btn-primary"
+                disabled={loading}
               >
                 {loading ? 'Cargando...' : 'Entrar'}
               </button>

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { register } from '../services/authService'; 
+import { register } from '../services/authService';
+import { toast } from 'react-toastify'; // 👈 Importa el toast
+import 'react-toastify/dist/ReactToastify.css'; // 👈 Asegúrate de importar el estilo
 
 function Register() {
   const navigate = useNavigate();
@@ -23,7 +25,8 @@ function Register() {
     setLoading(true);
     try {
       await register({ name, email, password });
-      navigate('/login'); 
+      toast.success('¡Te has registrado con éxito!');
+      navigate('/login');
     } catch (err) {
       if (err.response && err.response.data && err.response.data.message) {
         setError(err.response.data.message);
