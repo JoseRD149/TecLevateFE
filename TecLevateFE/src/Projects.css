@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
-  min-height: 130vh;
+  min-height: 130vh !important;
   background-image: url('src/assets/background.jpg');
   background-size: cover;
   background-position: center;
