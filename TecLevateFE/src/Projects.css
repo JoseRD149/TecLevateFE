@@ -110,3 +110,34 @@ body {
     max-width: 100%;
   }
 }
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000; 
+}
+
+.modal-content {
+  background-color: #f0ad05 !important;
+  padding: 20px;
+  border-radius: 15px !important;
+  max-width: 600px;
+  width: 80%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  z-index: 2001;
+  display: block; 
+}
+
+.modal-content h2 {
+  margin-bottom: 15px;
+}
+
+.modal-content p {
+  margin-bottom: 20px;
+}

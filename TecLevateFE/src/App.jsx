@@ -14,10 +14,6 @@ import PrivateRoute from "./components/PrivateRoute";
 import { ToastContainer } from "react-toastify";
 import Register from "./pages/Register";
 
-import CreateCourse from "./components/CreateCourse";
-import CreateProject from "./components/CreateProject";
-import CreateJobOffer from "./components/CreateJobOffer";
-
 import ListCourses from './components/ListCourses';
 import ListProjects from './components/ListProjects';
 import ListJobOffers from './components/ListJobOffers';
@@ -42,6 +38,7 @@ function App() {
           <Route path="/list-courses" element={<ListCourses />} />
           <Route path="/list-projects" element={<ListProjects />} />
           <Route path="/list-joboffers" element={<ListJobOffers />} />
+
           <Route path="/" element={<Login />} />
 
           {/* Rutas protegidas */}
@@ -77,32 +74,7 @@ function App() {
               </PrivateRoute>
             }
           />
-
-          {/* Nuevas rutas para crear */}
-          <Route
-            path="/create-course"
-            element={
-              <PrivateRoute>
-                <CreateCourse />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/create-project"
-            element={
-              <PrivateRoute>
-                <CreateProject />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/create-joboffer"
-            element={
-              <PrivateRoute>
-                <CreateJobOffer />
-              </PrivateRoute>
-            }
-          />
+          
         </Routes>
       </div>
     </>
