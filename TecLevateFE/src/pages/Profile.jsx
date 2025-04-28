@@ -80,7 +80,7 @@ function Profile() {
               src={profileImage}
               alt={user.name}
               className="rounded-circle mb-3"
-              style={{ width: '150px', height: '150px' }}
+              style={{ width: '200px', height: '200px' }}
             />
           ) : (
             <div className="mb-3">

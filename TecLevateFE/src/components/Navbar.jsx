@@ -40,7 +40,6 @@ function Navbar() {
             alt="Logo"
             style={{ height: "90px" }}
           />{" "}
-          {/* Asegúrate de que el logo tenga el tamaño adecuado */}
         </Link>
         <button
           className="navbar-toggler"
