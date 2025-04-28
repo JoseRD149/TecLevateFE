@@ -33,7 +33,6 @@ function App() {
 
       <div className="container mt-4">
         <Routes>
-          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/list-courses" element={<ListCourses />} />
           <Route path="/list-projects" element={<ListProjects />} />
