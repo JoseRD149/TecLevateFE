@@ -112,8 +112,8 @@ function Profile() {
             {projects.length > 0 ? (
               projects.map(p => (
                 <li key={p.id} className="list-group-item">
-                  <h5>{p.name}</h5>
-                  <p>{p.description}</p>
+                  <h5 className='description'>{p.title}</h5>
+                  <p className='description'>{p.description}</p>
                 </li>
               ))
             ) : (
@@ -126,8 +126,8 @@ function Profile() {
             {courses.length > 0 ? (
               courses.map(c => (
                 <li key={c.id} className="list-group-item">
-                  <h5>{c.name}</h5>
-                  <p>{c.description}</p>
+                  <h5 className='description'>{c.title}</h5>
+                  <p className='description'>{c.description}</p>
                 </li>
               ))
             ) : (

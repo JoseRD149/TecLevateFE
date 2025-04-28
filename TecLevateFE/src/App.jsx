@@ -26,8 +26,7 @@ import Dashboard from './pages/Dashboard';
 function App() {
   const location = useLocation();
 
-  // Si la ruta es login o register, no se muestra la navbar
-  const hideNavbar = location.pathname === "/login" || location.pathname === "/register";
+  const hideNavbar = location.pathname === "/" || location.pathname === "/login" || location.pathname === "/register";
 
   return (
     <>
@@ -43,11 +42,11 @@ function App() {
           <Route path="/list-courses" element={<ListCourses />} />
           <Route path="/list-projects" element={<ListProjects />} />
           <Route path="/list-joboffers" element={<ListJobOffers />} />
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Login />} />
 
           {/* Rutas protegidas */}
           <Route
-            path="/"
+            path="/home"
             element={
               <PrivateRoute>
                 <Home />

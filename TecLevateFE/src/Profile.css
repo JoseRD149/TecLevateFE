@@ -52,3 +52,7 @@ body {
 button {
   margin-top: 20px;
 }
+.description {
+  color: black !important;
+ 
+}
