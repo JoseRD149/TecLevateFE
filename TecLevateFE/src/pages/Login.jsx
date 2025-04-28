@@ -18,9 +18,8 @@ function Login() {
     setLoading(true);
 
     try {
-      const result = await login({ email, password });
-      const user = result.user; 
-      const company = result.company; 
+      const user = await login({ email, password });
+
       console.log('Usuario recibido:', user);
 
       if (user) {

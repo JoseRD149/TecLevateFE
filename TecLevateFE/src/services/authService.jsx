@@ -32,6 +32,7 @@ export function login(credentials) {
         console.error('Error desconocido:', error.message);
         toast.error('Ocurrió un error desconocido. Por favor, intenta más tarde.');
       }
+      throw error;
     });
 }
 export const register = async (formData) => {
